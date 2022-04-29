@@ -1,0 +1,107 @@
+
+    def __init__(self, **kwargs):
+        super(MyGridLayout,self).__init__(*kwargs)
+        self.cols = 1 
+
+        self.row_force_default=True
+        self.row_default_height = 120
+        self.col_force_default=True
+        self.col_default_width = 100
+
+        # second layout 
+        self.top_grid = GridLayout(row_force_default=True,
+        row_default_height = 40,
+        col_force_default=True,
+        col_default_width = 100,
+        )
+        self.top_grid.cols = 2 
+
+        self.top_grid.add_widget(Label(text="name : "))
+        self.name = TextInput(multiline=True)
+        self.top_grid.add_widget(self.name)
+
+        self.top_grid.add_widget(Label(text="school : "))
+        self.school = TextInput(multiline=False)
+        self.top_grid.add_widget(self.school)
+
+        # add new topgrid to app 
+        self.add_widget(self.top_grid)
+
+        self.submit = Button(text="Submit",
+        font_size=32,
+        size_hint_y = None,
+        height = 50,
+        size_hint_x = None,
+        width = 200
+        )
+        self.submit.bind(on_press=self.press)
+        self.add_widget(self.submit)
+
+
+#:kivy 2.0
+<MyGridLayout>
+    GridLayout:
+        name:name 
+        school:school
+        food:food
+        cols:1 
+        size: root.width, root.height
+        GridLayout:
+            cols:2
+
+            Label:
+                text: "Name"
+            TextInput: 
+                id:name
+                multiline:False 
+            
+            Label:
+                text: "School"
+            TextInput: 
+                id:school
+                multiline:False 
+            
+            Label:
+                text: "Food"
+            TextInput: 
+                id:food
+                multiline:False 
+        Button:
+            text:"Submit"
+            font_size: 32
+            on_press: root.press()
+
+
+
+
+from Tkinter import *
+from PIL import ImageTk, Image
+import cv2
+
+
+root = Tk()
+# Create a frame
+app = Frame(root, bg="white")
+app.grid()
+# Create a label in the frame
+lmain = Label(app)
+lmain.grid()
+
+# Capture from camera
+cap = cv2.VideoCapture(0)
+
+# function for video streaming
+def video_stream():
+    _, frame = cap.read()
+    cv2image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
+    img = Image.fromarray(cv2image)
+    imgtk = ImageTk.PhotoImage(image=img)
+    lmain.imgtk = imgtk
+    lmain.configure(image=imgtk)
+    lmain.after(1, video_stream) 
+
+video_stream()
+root.mainloop()
+
+
+

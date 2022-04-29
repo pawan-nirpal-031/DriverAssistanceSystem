@@ -1,0 +1,9 @@
+https://arxiv.org/abs/1911.09070
+
+https://medium.com/visionwizard/efficientdet-a-paper-review-21918d9a648d
+
+https://paperswithcode.com/method/efficientnet#:~:text=EfficientNet%20is%20a%20convolutional%20neural,resolution%20using%20a%20compound%20coefficient.
+
+https://ai.googleblog.com/2020/04/efficientdet-towards-scalable-and.html
+
+https://ai.googleblog.com/2019/05/efficientnet-improving-accuracy-and.html
